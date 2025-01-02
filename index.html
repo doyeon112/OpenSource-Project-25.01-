@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>독서 기록 관리 서비스</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #2c003e;
+            color: #fff;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #c70039;
+            padding: 10px 20px;
+        }
+
+        header .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        header nav {
+            display: flex;
+            gap: 15px;
+        }
+
+        header nav a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 80vh;
+        }
+
+        .page {
+            display: none;
+            background-color: #fff;
+            color: #000;
+            padding: 20px;
+            border-radius: 10px;
+            width: 70%;
+            text-align: center;
+        }
+
+        .page.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">LOGO</div>
+    <nav>
+        <a id="readingsBtn">READINGS</a>
+        <a id="recordBtn">RECORD</a>
+        <a id="recommendBtn">RECOMMEND</a>
+        <a id="registerBtn">등록하기</a>
+        <a id="libraryBtn">내 서재</a>
+        <a id="loginBtn">LOGIN</a>
+    </nav>
+</header>
+
+<main>
+    <div id="readings" class="page active">
+        <h1>My Library</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>name</th>
+                    <th>current page</th>
+                    <th>total page</th>
+                    <th>writer</th>
+                    <th>category</th>
+                    <th>start_date</th>
+                    <th>last_read_date</th>
+                    <th>reading</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Example Book</td>
+                    <td>10</td>
+                    <td>200</td>
+                    <td>Author Name</td>
+                    <td>Fiction</td>
+                    <td>2025-01-01</td>
+                    <td>2025-01-02</td>
+                    <td>In Progress</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div id="record" class="page">
+        <h1>독후감 조회 및 독서 통계</h1>
+        <p>독서 기록 및 통계 차트를 확인하세요.</p>
+    </div>
+
+    <div id="recommend" class="page">
+        <h1>도서 추천</h1>
+        <p>추천 도서를 확인하거나 검색하세요.</p>
+    </div>
+
+    <div id="register" class="page">
+        <h1>새로운 책 등록</h1>
+        <form>
+            <label>책 이름: <input type="text"></label><br>
+            <label>현재 페이지: <input type="number"></label><br>
+            <label>총 페이지: <input type="number"></label><br>
+            <label>작가: <input type="text"></label><br>
+            <label>카테고리: <input type="text"></label><br>
+            <button>등록</button>
+        </form>
+    </div>
+
+    <div id="library" class="page">
+        <h1>내 서재</h1>
+        <div>
+            <h2>완독한 책</h2>
+            <p>Example Book 1, Example Book 2</p>
+        </div>
+        <div>
+            <h2>관심 도서</h2>
+            <p>Example Book 3, Example Book 4</p>
+        </div>
+    </div>
+
+    <div id="login" class="page">
+        <h1>로그인</h1>
+        <form>
+            <label>이메일: <input type="email"></label><br>
+            <label>비밀번호: <input type="password"></label><br>
+            <button>로그인</button>
+            <button type="button" id="signupBtn">회원가입</button>
+        </form>
+    </div>
+
+    <div id="signup" class="page">
+        <h1>회원가입</h1>
+        <form>
+            <label>이메일: <input type="email"></label><br>
+            <label>닉네임: <input type="text"></label><br>
+            <label>비밀번호: <input type="password"></label><br>
+            <button>회원가입</button>
+        </form>
+    </div>
+</main>
+
+<script>
+    const pages = document.querySelectorAll('.page');
+    const buttons = {
+        readingsBtn: 'readings',
+        recordBtn: 'record',
+        recommendBtn: 'recommend',
+        registerBtn: 'register',
+        libraryBtn: 'library',
+        loginBtn: 'login',
+    };
+
+    Object.keys(buttons).forEach(buttonId => {
+        document.getElementById(buttonId).addEventListener('click', () => {
+            pages.forEach(page => page.classList.remove('active'));
+            document.getElementById(buttons[buttonId]).classList.add('active');
+        });
+    });
+
+    document.getElementById('signupBtn').addEventListener('click', () => {
+        pages.forEach(page => page.classList.remove('active'));
+        document.getElementById('signup').classList.add('active');
+    });
+</script>
+
+</body>
+</html>
